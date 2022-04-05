@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.innosid">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- suppress AndroidElementNotAllowed -->
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Shopping Eyes"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.OCR">
+        <activity
+            android:name=".shoppingeyes.SplashScreenActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".shoppingeyes.InstructionsActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.ActionBar.Transparent"
+            android:parentActivityName=".shoppingeyes.HomeScreenActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".shoppingeyes.AboutActivity"
+            android:exported="false"
+            android:label="About us"
+            android:parentActivityName=".shoppingeyes.SettingsActivity"
+            android:theme="@style/AppTheme.ActionBar.Transparent"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".shoppingeyes.SettingsActivity"
+            android:exported="false"
+            android:label="Settings"
+            android:parentActivityName=".shoppingeyes.HomeScreenActivity"
+            android:theme="@style/AppTheme.ActionBar.Transparent"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".shoppingeyes.HomeScreenActivity"
+            android:exported="false"
+            android:theme="@style/Theme.OCR"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".shoppingeyes.MainActivity"
+            android:exported="false"
+            android:parentActivityName=".shoppingeyes.HomeScreenActivity"
+            android:theme="@style/AppTheme.ActionBar.Transparent"
+            android:screenOrientation="portrait"/>
+
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ocr" />
+    </application>
+
+</manifest>

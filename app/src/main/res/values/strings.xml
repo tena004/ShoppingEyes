@@ -1,0 +1,11 @@
+<resources>
+    <string name="scan_banknotes">Scan banknotes</string>
+    <string name="project_name">Innovative Solutions based on Emerging Technologies for Improving Social Inclusion of People with Disabilities</string>
+    <string name="project">Project reference: 2019–1–HR01-KA203-060959</string>
+    <string name="team">Team members:\nAlba Córdoba\nLuis Fialho\nMiklós Kálucz\nMarija Piliškić\nTena Živković</string>
+    <string name="supervisor">Supervisor: Hrvoje Vdović</string>
+    <string name="innosid_logo">INNOSID project logo</string>
+    <string name="erasmus_logo">Erasmus+ logo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
