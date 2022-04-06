@@ -11,6 +11,7 @@ class SharedPreferences(context: Context) {
     private var THEME = "theme"
     private var FONT_SIZE = "fontSize"
     private var SWITCH_STATE = "switchState"
+    private var FONT_SWITCH = "fontSwitchState"
 
 
 
@@ -34,5 +35,21 @@ class SharedPreferences(context: Context) {
         editor.commit()
     }
 
+    fun getFont(): String? {
+        return preferences.getString(FONT_SIZE, "Normal")
+    }
 
+    fun changeFont(font: String){
+        editor.putString(FONT_SIZE, font)
+        editor.commit()
+    }
+
+    fun getFontSwitchState() : Boolean {
+        return preferences.getBoolean(FONT_SWITCH, false)
+    }
+
+    fun setFontSwitchState(large: Boolean){
+        editor.putBoolean(FONT_SWITCH, large)
+        editor.commit()
+    }
 }

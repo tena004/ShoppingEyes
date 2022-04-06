@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.innosid.R
+import com.innosid.databinding.FragmentInstructionsBinding
 
 class InstructionsFragment : Fragment() {
 

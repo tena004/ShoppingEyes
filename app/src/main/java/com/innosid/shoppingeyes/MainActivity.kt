@@ -79,7 +79,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         val newTheme = session.getTheme()
 
-
         if(newTheme == "HighContrastTheme") {
             theme.applyStyle(R.style.HighContrastTheme_OCR, true)
         }else{
@@ -89,7 +88,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         val window: Window = this.window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = ContextCompat.getColor(this,android.R.color.transparent)
-
 
         super.onCreate(savedInstanceState)
         //for easier linking
@@ -101,6 +99,11 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         imgView = binding.imgView
 
         textViewData = binding.textViewData
+        if (session.getFont() == "Large"){
+            textViewData.textSize = 35F
+        }else{
+            textViewData.textSize = 30F
+        }
         textViewData.movementMethod = ScrollingMovementMethod()
         //custom gestures applicable on textView too
         textViewData.setOnTouchListener { v, event ->
@@ -136,6 +139,8 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             buttonTake.visibility = View.VISIBLE
             textViewData.visibility = View.VISIBLE
         }
+
+        startCamera()
     }
 
     //for correct photo orientation (for text recognition)
@@ -258,6 +263,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                     )
                     textRecognizer.process(rawImage).addOnSuccessListener { visionText ->
                         textViewData.text = getTextFromImage(visionText)
+                        //tts!!.speak(textViewData.text, TextToSpeech.QUEUE_FLUSH, null,"")
                     }.addOnFailureListener { error ->
                         Toast.makeText(
                             this@MainActivity, "TEXT RECOGNITION ERROR" + error.message, Toast.LENGTH_SHORT
@@ -407,9 +413,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun onSwipeUp() {
         val currentClickTime = System.currentTimeMillis()
-        if (currentClickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
-            speak("TODO")
-        } else {
+        if (currentClickTime - lastClickTime > DOUBLE_CLICK_TIME_DELTA) {
             speak("SWIPE UP")
             lastClickTime = currentClickTime
         }
@@ -427,9 +431,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun onLeftSwipe() {
         val currentClickTime = System.currentTimeMillis()
-        if (currentClickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
-            speak("TODO")
-        } else {
+        if (currentClickTime - lastClickTime > DOUBLE_CLICK_TIME_DELTA) {
             speak("LEFT SWIPE")
             lastClickTime = currentClickTime
         }

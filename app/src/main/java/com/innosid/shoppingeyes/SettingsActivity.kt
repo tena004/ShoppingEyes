@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.innosid.R
 import com.innosid.databinding.ActivitySettingsBinding
+import kotlinx.android.synthetic.main.activity_settings.*
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -21,8 +22,10 @@ class SettingsActivity : AppCompatActivity() {
 
         session = SharedPreferences(this)
         val newTheme = session.getTheme()
-        var switchState = session.getSwitchState()
+        val switchState = session.getSwitchState()
+        val fontSwitch = session.getFontSwitchState()
         val window: Window = this.window
+
 
 
         if(newTheme == "HighContrastTheme") {
@@ -30,6 +33,7 @@ class SettingsActivity : AppCompatActivity() {
         }else{
             theme.applyStyle(R.style.Theme_OCR, true)
         }
+
 
 
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -44,12 +48,14 @@ class SettingsActivity : AppCompatActivity() {
 
         val highContrast : Switch = binding.contrastSwitch
         val aboutButton = binding.aboutBtn
+        val largeFont : Switch = binding.fontSwitch
 
-        if(switchState){
-            highContrast.setChecked(true)
-        }else{
-            highContrast.setChecked(false)
-        }
+        val text1 = binding.textView
+        val text2 = binding.textView2
+
+        highContrast.isChecked = switchState
+
+        largeFont.isChecked = fontSwitch
 
         highContrast.setOnCheckedChangeListener{ _, isChecked ->
             if(isChecked){
@@ -58,7 +64,7 @@ class SettingsActivity : AppCompatActivity() {
                 overridePendingTransition(0, 0)
                 finish()
                 overridePendingTransition(0, 0)
-                startActivity(getIntent())
+                startActivity(intent)
                 overridePendingTransition(0, 0)
             }
             else{
@@ -67,8 +73,24 @@ class SettingsActivity : AppCompatActivity() {
                 overridePendingTransition(0, 0)
                 finish()
                 overridePendingTransition(0, 0)
-                startActivity(getIntent())
+                startActivity(intent)
                 overridePendingTransition(0, 0)
+            }
+
+        }
+
+        largeFont.setOnCheckedChangeListener{ _, isChecked ->
+            if(isChecked){
+                session.setFontSwitchState(true)
+                session.changeFont("Large")
+                text1.textSize = 30F
+                text2.textSize = 30F
+            }
+            else{
+                session.setFontSwitchState(false)
+                session.changeFont("Normal")
+                text1.textSize = 25F
+                text2.textSize = 25F
             }
 
         }

@@ -13,7 +13,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="120dp"
         android:text="High contrast"
-        android:textSize="25dp"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,8 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
-        android:text="Font size"
-        android:textSize="25dp"
+        android:text="Large font size"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView"

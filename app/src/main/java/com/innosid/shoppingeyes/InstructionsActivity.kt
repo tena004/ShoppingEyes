@@ -6,6 +6,12 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import com.innosid.R
+import com.innosid.databinding.ActivityInstructionsBinding
+import com.innosid.databinding.ActivitySettingsBinding
+import com.innosid.databinding.FragmentInstructionsBinding
+import kotlinx.android.synthetic.main.fragment_first_screen.*
+import kotlinx.android.synthetic.main.fragment_first_screen.description
+import kotlinx.android.synthetic.main.fragment_second_screen.*
 
 class InstructionsActivity : AppCompatActivity() {
 
@@ -23,7 +29,6 @@ class InstructionsActivity : AppCompatActivity() {
         }else{
             theme.applyStyle(R.style.Theme_OCR, true)
         }
-
 
         val window: Window = this.window
         supportActionBar?.hide()
